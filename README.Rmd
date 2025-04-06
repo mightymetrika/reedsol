@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# reedsol
+
+The goal of reedsol is to sample from a Reed-Solomon distribution using rejection sampling.
+
+## Installation
+
+You can install the development version of reedsol from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("mightymetrika/reedsol")
+```
+
+## Example
+
+Sample using reedsol_sim() as follows:
+
+```{r example}
+library(reedsol)
+
+reedsol_sim(data = c(2, 4, 6),
+            n = 5,
+            q = 8)
+```
+
+
+## Parameters
+
+* data: A numeric vector used to generate the Reed-Solomon curve.
+* n: Number of samples to generate (default: 1)
+* q: Size of the finite field GF(q) (default: 256)
+* k: Degree of the polynomial to use (default: length of data)
+
+## Description
+
+The function works by:
+
+1. Converting input data to elements in GF(q)
+2. Constructing a probability density function as a polynomial with coefficients from the data
+3. Normalizing this function through numerical integration
+4. Using rejection sampling to generate random samples
